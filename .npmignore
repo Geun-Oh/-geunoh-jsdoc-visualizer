@@ -1,0 +1,8 @@
+lib
+node_modules
+src/*
+App.tsx
+cli.tsx
+package-lock.json
+tsconfig.json
+result.json

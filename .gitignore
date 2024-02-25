@@ -1,0 +1,6 @@
+dist
+node_modules
+public
+result.json
+index.html
+index.tsx
