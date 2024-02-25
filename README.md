@@ -15,5 +15,5 @@ npm i -g @geunoh/jsdoc-visualizer
 #### Use it with command
 
 ```bash
-visualize -d ${your directory}
+jv -d ${your directory}
 ```
