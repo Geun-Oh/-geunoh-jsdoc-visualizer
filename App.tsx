@@ -32,7 +32,6 @@ const App = ({ json }: { json: returnProps[] }) => {
           .slice(3, -1)
           .map((x) => x.trim())
           .filter((x) => x !== "");
-        console.log(parsedArr);
         const parameters = parsedArr
           .filter((x) => x.startsWith("@param"))
           .map((v) => {
@@ -45,7 +44,6 @@ const App = ({ json }: { json: returnProps[] }) => {
               paramDescription,
             };
           });
-        console.log(parameters);
         const returns = parsedArr.filter((x) => x.startsWith("@return"))[0];
         const returnsDescription = returns
           ? returns.split(" ").slice(1).join(" ")
