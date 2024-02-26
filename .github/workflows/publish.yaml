@@ -18,12 +18,13 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "18.x"
-          registry-url: "https://npm.pkg.github.com"
 
       - run: |
           npm install
           npm run build
 
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check & Publish utils package
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: "./package.json"
