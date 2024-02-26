@@ -1,6 +1,6 @@
 {
   "name": "@geunoh/jsdoc-visualizer",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "JSDoc Visualizer for everyone. Overview your functions.",
   "bin": {
     "jv": "dist/cli.js"
