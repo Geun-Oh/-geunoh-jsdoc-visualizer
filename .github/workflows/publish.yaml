@@ -1,21 +1,27 @@
-name: Release Tag
+name: Publish
+
 on:
   push:
-    branches:
-      - main
+    tags: "v*"
+
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.message, 'RELEASE')
+    permissions:
+      contents: read
+      packages: write
     steps:
-      - uses: actions/checkout@v2
-      - name: 버전 정보 추출
-        run: echo "##[set-output name=version;]$(echo '${{ github.event.head_commit.message }}' | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
-        id: extract_version_name
-      - name: Release 생성
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v2
         with:
-          tag_name: ${{ steps.extract_version_name.outputs.version }}
-          release_name: ${{ steps.extract_version_name.outputs.version }}
+          node-version: "18.x"
+          registry-url: "https://npm.pkg.github.com"
+
+      - run: |
+          npm install
+          npm run build
+
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
